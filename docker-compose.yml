@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: sentinel_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secretpassword}
+      POSTGRES_DB: ${DB_NAME:-sentinel_grc}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sentinel_backend
+    restart: always
+    ports:
+      - "8081:8080"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sentinel_frontend
+    restart: always
+    ports:
+      - "5174:5173"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

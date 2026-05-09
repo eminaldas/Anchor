@@ -1,0 +1,36 @@
+# Binaries
+bin/
+obj/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Dependencies
+node_modules/
+vendor/
+go.sum
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+backend/server
+agent/sentinel-agent.exe
+frontend/dist/
+frontend/.svelte-kit/
