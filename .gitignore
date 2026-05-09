@@ -34,3 +34,11 @@ backend/server
 agent/sentinel-agent.exe
 frontend/dist/
 frontend/.svelte-kit/
+
+# Documentation & AI
+md/
+docs/
+history.md
+.antigravityignore
+.gemini/
+scratch.go
